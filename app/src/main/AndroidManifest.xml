@@ -20,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.eniskaner.mcutrackers.androidx-startup"
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.eniskaner.mcutrackers.initializer.TimberInitializer"
+                android:value="androidx.startup"/>
+        </provider>
     </application>
 
 </manifest>
