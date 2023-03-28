@@ -46,7 +46,8 @@
 
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:spanCount="2" />
+            app:spanCount="2"
+            tools:listitem="@layout/item_favourite"/>
         
         <TextView
             android:id="@+id/tv_favourite_empty"
