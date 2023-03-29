@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface MarvelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(movies: List<Movie>)
-    
+
     @Query("SELECT*FROM Movie")
     fun getMovies(): Flow<List<Movie>>
 }
