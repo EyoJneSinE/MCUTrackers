@@ -21,6 +21,15 @@ class FavouriteFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        binding.rwFavourite.also { it.setHasFixedSize(true) }.adapter = FavouriteAdapter()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
