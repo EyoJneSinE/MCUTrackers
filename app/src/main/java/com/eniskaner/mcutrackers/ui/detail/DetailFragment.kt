@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eniskaner.mcutrackers.databinding.FragmentDetailBinding
+import com.eniskaner.mcutrackers.util.NavigateCallBack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -40,8 +42,19 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initNavigateCallBack()
         initMovieCollect()
         initToolbarNavigationClickListener()
+    }
+
+    private fun initNavigateCallBack() {
+        binding.callback = object : NavigateCallBack {
+            override fun navigate(view: View, title: String) {
+                val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
+                view.findNavController().navigate(action)
+            }
+        }
+        binding.executePendingBindings()
     }
 
     private fun initToolbarNavigationClickListener() {
