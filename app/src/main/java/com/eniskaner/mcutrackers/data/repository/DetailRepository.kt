@@ -1,10 +1,10 @@
 package com.eniskaner.mcutrackers.data.repository
 
-import com.eniskaner.mcutrackers.database.model.Movie
+import com.eniskaner.mcutrackers.data.model.MovieDetailInfo
 import kotlinx.coroutines.flow.Flow
 
 interface DetailRepository {
-    fun getMovie(title: String): Flow<Movie>
+    fun getMovie(title: String): Flow<MovieDetailInfo>
 
     fun isFavourite(title: String): Flow<Boolean>
 
