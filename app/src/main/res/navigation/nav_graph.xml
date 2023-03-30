@@ -28,10 +28,22 @@
         <argument
             android:name="title"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_detailFragment_to_ratingDialog"
+            app:destination="@id/ratingDialog" />
 
     </fragment>
     <action
         android:id="@+id/action_global_detailFragment"
         app:destination="@id/detailFragment" />
+    <dialog
+        android:id="@+id/ratingDialog"
+        android:name="com.eniskaner.mcutrackers.ui.rating.RatingDialog"
+        android:label="RatingDialog"
+        tools:layout="@layout/dialog_rating">
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </dialog>
 
 </navigation>
