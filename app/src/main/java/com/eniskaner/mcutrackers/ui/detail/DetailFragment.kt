@@ -38,16 +38,30 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initNavigateCallBack()
-        initMovieCollect()
+        initBindingVariables()
         initToolbarNavigationClickListener()
         initFragmentResultListener()
+    }
+
+    private fun initBindingVariables() {
+        with(binding) {
+            viewModel = this@DetailFragment.viewModel
+            callback = object : NavigateCallBack {
+                override fun navigate(view: View, title: String) {
+                    val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
+                    view.findNavController().navigate(action)
+                }
+            }
+            executePendingBindings()
+        }
     }
 
     private fun initFragmentResultListener() {
@@ -57,30 +71,9 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun initNavigateCallBack() {
-        binding.callback = object : NavigateCallBack {
-            override fun navigate(view: View, title: String) {
-                val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
-                view.findNavController().navigate(action)
-            }
-        }
-        binding.executePendingBindings()
-    }
-
     private fun initToolbarNavigationClickListener() {
         binding.toolbarDetail.setNavigationOnClickListener {
             findNavController().popBackStack()
-        }
-    }
-
-    private fun initMovieCollect() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.movie.collect {
-                    binding.movie = it
-                    binding.executePendingBindings()
-                }
-            }
         }
     }
 
