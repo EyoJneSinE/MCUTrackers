@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.eniskaner.mcutrackers.data.model.MovieAndRating
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.data.model.MovieDetailInfo
 import com.eniskaner.mcutrackers.database.model.Movie
@@ -23,6 +24,16 @@ interface MarvelDao {
 
     @Query("SELECT id, title, image FROM Movie WHERE phase = :phase")
     fun getMoviesByPhase(phase: Int): Flow<List<MovieBasicInfo>>
+
+    @Query(
+        """
+            SELECT e.id, e.title, e.image, r.rating
+            FROM Movie AS e, Rating AS r
+            WHERE e.title = r.title
+            ORDER BY r.id
+        """
+    )
+    fun getFavourites(): Flow<List<MovieAndRating>>
 
     @Query("SELECT id, title, content, `release`, running_time AS runningtime, image FROM Movie WHERE title = :title")
     fun getMovie(title: String): Flow<MovieDetailInfo>
