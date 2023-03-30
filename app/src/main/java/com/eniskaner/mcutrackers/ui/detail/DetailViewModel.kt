@@ -7,15 +7,17 @@ import com.eniskaner.mcutrackers.data.repository.DetailRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class DetailViewModel @AssistedInject constructor(
     private val repository: DetailRepository,
     @Assisted private val title: String
 ): ViewModel() {
-    val movie = repository.getMovie(title)
+    val movie = repository.getMovie(title).stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
-    val isFavourite = repository.isFavourite(title)
+    val isFavourite = repository.isFavourite(title).stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 
     fun insertRating(rating: Float) {
         viewModelScope.launch {
