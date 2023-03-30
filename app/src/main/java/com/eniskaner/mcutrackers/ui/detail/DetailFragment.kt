@@ -54,8 +54,8 @@ class DetailFragment : Fragment() {
     private fun initBindingVariables() {
         with(binding) {
             viewModel = this@DetailFragment.viewModel
-            callback = object : NavigateCallBack {
-                override fun navigate(view: View, title: String) {
+            callback = NavigateCallBack { view, title ->
+                title?.let {
                     val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
                     view.findNavController().navigate(action)
                 }
