@@ -8,19 +8,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.eniskaner.mcutrackers.NavGraphDirections
+import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.database.model.Movie
 import com.eniskaner.mcutrackers.databinding.ItemMovieBinding
 import com.eniskaner.mcutrackers.util.NavigateCallBack
 
-class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
-    object : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.id == newItem.id
-        }
+class MovieAdapter : ListAdapter<MovieBasicInfo, MovieAdapter.MovieViewHolder>(
+    object : DiffUtil.ItemCallback<MovieBasicInfo>() {
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: MovieBasicInfo, newItem: MovieBasicInfo): Boolean {
             return oldItem == newItem
+        }
+
+        override fun areItemsTheSame(oldItem: MovieBasicInfo, newItem: MovieBasicInfo): Boolean {
+            return oldItem.id == newItem.id
         }
     }
 ) {
@@ -36,7 +38,7 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
 
     class MovieViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Movie) {
+        fun bind(model: MovieBasicInfo) {
             binding.model = model
             binding.callback = callback
             binding.executePendingBindings()
