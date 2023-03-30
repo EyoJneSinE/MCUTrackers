@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.navArgs
 import com.eniskaner.mcutrackers.R
 import com.eniskaner.mcutrackers.databinding.DialogRatingBinding
 
@@ -20,6 +21,17 @@ class RatingDialog : DialogFragment() {
     ): View? {
         _binding = DialogRatingBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initMovieTitle()
+    }
+
+    private fun initMovieTitle() {
+        val args by navArgs<RatingDialogArgs>()
+        binding.tvRatingMovieTitle.text = args.title
+        binding.executePendingBindings()
     }
 
     override fun onDestroyView() {
