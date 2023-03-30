@@ -2,7 +2,7 @@ package com.eniskaner.mcutrackers.ui.movie
 
 import androidx.annotation.MenuRes
 import androidx.lifecycle.ViewModel
-import com.eniskaner.mcutrackers.data.MovieRepository
+import com.eniskaner.mcutrackers.data.repository.MovieRepository
 import com.eniskaner.mcutrackers.database.model.Phase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,4 +1,4 @@
-package com.eniskaner.mcutrackers.data
+package com.eniskaner.mcutrackers.data.repository
 
 import com.eniskaner.mcutrackers.database.MarvelDao
 import com.eniskaner.mcutrackers.database.model.Movie
