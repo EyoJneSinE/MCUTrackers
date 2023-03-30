@@ -5,16 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.eniskaner.mcutrackers.data.model.MovieAndRating
 import com.eniskaner.mcutrackers.database.model.Rating
 import com.eniskaner.mcutrackers.databinding.ItemFavouriteBinding
 
-class FavouriteAdapter:ListAdapter<Rating, FavouriteAdapter.FavouriteViewHolder>(
-    object : DiffUtil.ItemCallback<Rating>() {
-        override fun areItemsTheSame(oldItem: Rating, newItem: Rating): Boolean {
+class FavouriteAdapter:ListAdapter<MovieAndRating, FavouriteAdapter.FavouriteViewHolder>(
+    object : DiffUtil.ItemCallback<MovieAndRating>() {
+        override fun areItemsTheSame(oldItem: MovieAndRating, newItem: MovieAndRating): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Rating, newItem: Rating): Boolean {
+        override fun areContentsTheSame(oldItem: MovieAndRating, newItem: MovieAndRating): Boolean {
             return oldItem==newItem
         }
 
@@ -32,7 +33,7 @@ class FavouriteAdapter:ListAdapter<Rating, FavouriteAdapter.FavouriteViewHolder>
         holder.bind(getItem(position))
     }
     class FavouriteViewHolder(private val binding: ItemFavouriteBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Rating) {
+        fun bind(model: MovieAndRating) {
             binding.model = model
             binding.executePendingBindings()
         }
