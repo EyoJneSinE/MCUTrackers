@@ -16,6 +16,10 @@ class DetailRepositoryImplementation @Inject constructor(
         return dao.getMovie(title).flowOn(ioDispatcher)
     }
 
+    override fun isFavourite(title: String): Flow<Boolean> {
+        return dao.getIsFavourite(title)
+    }
+
     override suspend fun insertRating(title: String, rating: Float) {
         dao.insertRating(Rating(title = title, rating = rating))
     }
