@@ -1,5 +1,7 @@
 package com.eniskaner.mcutrackers.di
 
+import com.eniskaner.mcutrackers.data.repository.DetailRepository
+import com.eniskaner.mcutrackers.data.repository.DetailRepositoryImplementation
 import com.eniskaner.mcutrackers.data.repository.MovieRepository
 import com.eniskaner.mcutrackers.data.repository.MovieRepositoryImplementation
 import dagger.Binds
@@ -16,4 +18,10 @@ abstract class RepositoryModule {
     abstract fun bindMovieRepository(
         movieRepositoryImplementation: MovieRepositoryImplementation
     ): MovieRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindDetailRepository(
+        detailRepositoryImplementation: DetailRepositoryImplementation
+    ): DetailRepository
 }
