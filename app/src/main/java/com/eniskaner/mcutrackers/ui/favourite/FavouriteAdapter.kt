@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eniskaner.mcutrackers.data.model.MovieAndRating
 import com.eniskaner.mcutrackers.database.model.Rating
 import com.eniskaner.mcutrackers.databinding.ItemFavouriteBinding
+import com.eniskaner.mcutrackers.util.MarvelViewHolder
 
-class FavouriteAdapter:ListAdapter<MovieAndRating, FavouriteAdapter.FavouriteViewHolder>(
+class FavouriteAdapter:ListAdapter<MovieAndRating, MarvelViewHolder<MovieAndRating>>(
     object : DiffUtil.ItemCallback<MovieAndRating>() {
         override fun areItemsTheSame(oldItem: MovieAndRating, newItem: MovieAndRating): Boolean {
             return oldItem.id == newItem.id
@@ -23,19 +24,14 @@ class FavouriteAdapter:ListAdapter<MovieAndRating, FavouriteAdapter.FavouriteVie
 ) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelViewHolder<MovieAndRating> {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemFavouriteBinding.inflate(inflater, parent, false)
-        return FavouriteViewHolder(binding)
+        return MarvelViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelViewHolder<MovieAndRating>, position: Int) {
         holder.bind(getItem(position))
     }
-    class FavouriteViewHolder(private val binding: ItemFavouriteBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: MovieAndRating) {
-            binding.model = model
-            binding.executePendingBindings()
-        }
-    }
+    
 }

@@ -11,9 +11,10 @@ import com.eniskaner.mcutrackers.NavGraphDirections
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.database.model.Movie
 import com.eniskaner.mcutrackers.databinding.ItemMovieBinding
+import com.eniskaner.mcutrackers.util.MarvelViewHolder
 import com.eniskaner.mcutrackers.util.NavigateCallBack
 
-class MovieAdapter : ListAdapter<MovieBasicInfo, MovieAdapter.MovieViewHolder>(
+class MovieAdapter : ListAdapter<MovieBasicInfo, MarvelViewHolder<MovieBasicInfo>>(
     object : DiffUtil.ItemCallback<MovieBasicInfo>() {
 
         @SuppressLint("DiffUtilEquals")
@@ -26,32 +27,14 @@ class MovieAdapter : ListAdapter<MovieBasicInfo, MovieAdapter.MovieViewHolder>(
         }
     }
 ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelViewHolder<MovieBasicInfo> {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMovieBinding.inflate(inflater, parent, false)
-        return MovieViewHolder(binding)
+        return MarvelViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelViewHolder<MovieBasicInfo>, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class MovieViewHolder(private val binding: ItemMovieBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: MovieBasicInfo) {
-            binding.model = model
-            binding.callback = callback
-            binding.executePendingBindings()
-        }
-        companion object {
-            val callback = NavigateCallBack { view, title ->
-                title?.let {
-                    val action = NavGraphDirections.actionGlobalDetailFragment(title)
-                    view.findNavController().navigate(action)
-                }
-
-
-            }
-        }
-    }
 }
