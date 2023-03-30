@@ -2,6 +2,7 @@ package com.eniskaner.mcutrackers.data.repository
 
 import com.eniskaner.mcutrackers.database.MarvelDao
 import com.eniskaner.mcutrackers.database.model.Movie
+import com.eniskaner.mcutrackers.database.model.Rating
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -14,4 +15,9 @@ class DetailRepositoryImplementation @Inject constructor(
     override fun getMovie(title: String): Flow<Movie> {
         return dao.getMovie(title).flowOn(ioDispatcher)
     }
+
+    override suspend fun insertRating(title: String, rating: Float) {
+        dao.insertRating(Rating(title = title, rating = rating))
+    }
+
 }
