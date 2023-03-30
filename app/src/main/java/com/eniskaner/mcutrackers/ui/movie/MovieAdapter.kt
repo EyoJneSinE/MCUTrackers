@@ -2,12 +2,16 @@ package com.eniskaner.mcutrackers.ui.movie
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.eniskaner.mcutrackers.NavGraphDirections
 import com.eniskaner.mcutrackers.database.model.Movie
 import com.eniskaner.mcutrackers.databinding.ItemMovieBinding
+import com.eniskaner.mcutrackers.util.NavigateCallBack
 
 class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
     object : DiffUtil.ItemCallback<Movie>() {
@@ -35,7 +39,17 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: Movie) {
             binding.model = model
+            binding.callback = callback
             binding.executePendingBindings()
+        }
+        companion object {
+            val callback = object : NavigateCallBack {
+                override fun navigate(view: View, title: String) {
+                    val directions = NavGraphDirections
+                    val action = directions.actionGlobalDetailFragment(title)
+                    view.findNavController().navigate(action)
+                }
+            }
         }
     }
 }

@@ -20,6 +20,10 @@ class MovieViewModel @Inject constructor(
     val movies = phase.flatMapLatest { phase ->
         when (phase) {
             Phase.ALL -> repository.getMoviesByPhase(phase.ordinal)
+            Phase.ONE -> TODO()
+            Phase.TWO -> TODO()
+            Phase.THREE -> TODO()
+            Phase.FOUR -> TODO()
         }
     }
     fun setPhase(@MenuRes menuId: Int) {

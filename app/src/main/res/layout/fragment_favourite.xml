@@ -22,7 +22,7 @@
                 app:layout_scrollFlags="scroll|snap"
                 app:statusBarScrim="@color/red_900"
                 app:titleEnabled="false"
-                app:toolbarId="+@id/toolbar">
+                app:toolbarId="@id/toolbar">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar_favourite"

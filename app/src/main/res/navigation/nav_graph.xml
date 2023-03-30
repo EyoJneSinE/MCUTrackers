@@ -4,25 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/movieFragment">
-
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.eniskaner.mcutrackers.ui.movie.MovieFragment"
         android:label="MovieFragment"
-        tools:layout= "@layout/fragment_movie"/>
+        tools:layout="@layout/fragment_movie" >
+    </fragment>
     <fragment
-        android:id="@+id/favouriteFragment"
+        android:id="@+id/favoriteFragment"
         android:name="com.eniskaner.mcutrackers.ui.favourite.FavouriteFragment"
-        android:label="FavouriteFragment"
-        tools:layout="@layout/fragment_favourite" />
-    <action
-        android:id="@+id/action_global_detailFragment"
-        app:destination="@id/detailFragment" />
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favourite" >
+    </fragment>
+
+
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.eniskaner.mcutrackers.ui.detail.DetailFragment"
-        android:label="DetailFragment" />
-    <argument
-        android:name="title"
-        app:argType="string"/>
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="title"
+            app:argType="string"/>
+
+    </fragment>
+    <action
+        android:id="@+id/action_global_detailFragment"
+        app:destination="@id/detailFragment" />
+
 </navigation>
