@@ -33,5 +33,5 @@ class FavouriteAdapter:ListAdapter<MovieAndRating, MarvelViewHolder<MovieAndRati
     override fun onBindViewHolder(holder: MarvelViewHolder<MovieAndRating>, position: Int) {
         holder.bind(getItem(position))
     }
-    
+
 }

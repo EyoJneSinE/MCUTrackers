@@ -2,8 +2,12 @@ package com.eniskaner.mcutrackers.database.model
 
 import com.eniskaner.mcutrackers.R
 
-enum class Phase {
-    ALL, ONE, TWO, THREE, FOUR;
+enum class Phase(val str: String) {
+    ALL(""),
+    ONE("Phase 1"),
+    TWO("Phase 2"),
+    THREE("Phase 3"),
+    FOUR("Phase 4");
 
     companion object {
         val map = mapOf(
