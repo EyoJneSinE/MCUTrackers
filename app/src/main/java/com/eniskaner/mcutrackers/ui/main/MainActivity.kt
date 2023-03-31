@@ -1,4 +1,4 @@
-package com.eniskaner.mcutrackers
+package com.eniskaner.mcutrackers.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.eniskaner.mcutrackers.R
 import com.eniskaner.mcutrackers.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
