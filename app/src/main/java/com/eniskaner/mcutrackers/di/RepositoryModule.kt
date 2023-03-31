@@ -27,4 +27,10 @@ abstract class RepositoryModule {
     abstract fun bindDetailRepository(
         detailRepositoryImplementation: DetailRepositoryImplementation
     ): DetailRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRatingRepository(
+        ratingRepositoryImplementation: RatingRepositoryImplementation
+    ): RatingRepository
 }
