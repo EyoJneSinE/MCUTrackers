@@ -48,7 +48,7 @@ class DetailFragment : Fragment() {
 
     private fun initBindingVariables() {
         with(binding) {
-            viewModel = this@DetailFragment.viewModel
+            vm = this@DetailFragment.viewModel
             callback = NavigateCallBack { view, title ->
                 title?.let {
                     val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
