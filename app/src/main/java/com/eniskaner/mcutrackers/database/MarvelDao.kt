@@ -39,5 +39,5 @@ interface MarvelDao {
     fun getMovie(title: String): Flow<MovieDetailInfo>
 
     @Query("SELECT EXISTS(SELECT 1 FROM Rating WHERE title = :title)")
-    fun getIsFavourite(title: String): Flow<Boolean>
+    fun getExistRating(title: String): Flow<Boolean>
 }
