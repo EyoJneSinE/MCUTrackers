@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.eniskaner.mcutrackers.data.model.MovieAndRating
-import com.eniskaner.mcutrackers.database.model.Rating
 import com.eniskaner.mcutrackers.databinding.ItemFavouriteBinding
 import com.eniskaner.mcutrackers.util.MarvelViewHolder
 

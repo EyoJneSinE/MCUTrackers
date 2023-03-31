@@ -6,10 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import com.eniskaner.mcutrackers.R
 import com.eniskaner.mcutrackers.databinding.FragmentFavouriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,28 +21,23 @@ class FavouriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
+        _binding = FragmentFavouriteBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
-        initFavouritesCollect()
+        initBindingVariables()
     }
 
-    private fun initFavouritesCollect() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.favourites.collect { list ->
-                    (binding.rwFavourite.adapter as FavouriteAdapter).submitList(list)
-                }
-            }
+    private fun initBindingVariables() {
+        with(binding) {
+            vm = viewModel
+            adapter = FavouriteAdapter()
+            executePendingBindings()
         }
-    }
-
-    private fun initRecyclerView() {
-        binding.rwFavourite.also { it.setHasFixedSize(true) }.adapter = FavouriteAdapter()
     }
 
     override fun onDestroy() {

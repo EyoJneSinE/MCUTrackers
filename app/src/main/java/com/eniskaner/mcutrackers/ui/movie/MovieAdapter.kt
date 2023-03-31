@@ -3,16 +3,11 @@ package com.eniskaner.mcutrackers.ui.movie
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.eniskaner.mcutrackers.NavGraphDirections
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
-import com.eniskaner.mcutrackers.database.model.Movie
 import com.eniskaner.mcutrackers.databinding.ItemMovieBinding
 import com.eniskaner.mcutrackers.util.MarvelViewHolder
-import com.eniskaner.mcutrackers.util.NavigateCallBack
 
 class MovieAdapter : ListAdapter<MovieBasicInfo, MarvelViewHolder<MovieBasicInfo>>(
     object : DiffUtil.ItemCallback<MovieBasicInfo>() {
