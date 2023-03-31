@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="There are not Favourite Marvel Movies"
+            android:text="@string/favourites_empty"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textStyle="bold"
             android:visibility="@{vm.favourites.empty ? View.VISIBLE : View.GONE, default = gone}" />

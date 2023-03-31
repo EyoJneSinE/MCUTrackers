@@ -31,7 +31,7 @@
                 android:id="@+id/img_movie"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:contentDescription="Image of Marvel Movie"
+                android:contentDescription="@string/image_content_description"
                 android:scaleType="fitXY"
                 app:layout_constraintDimensionRatio="1:1.5"
                 app:layout_constraintEnd_toEndOf="parent"
