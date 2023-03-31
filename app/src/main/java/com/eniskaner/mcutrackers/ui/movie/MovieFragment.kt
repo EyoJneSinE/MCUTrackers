@@ -25,15 +25,24 @@ class MovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMovieBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
-        initMoviesCollect()
+        initBindingVariables()
         initToolbarMenuClickListener()
+    }
+
+    private fun initBindingVariables() {
+        with(binding) {
+            vm = viewModel
+            adapter = MovieAdapter()
+            executePendingBindings()
+        }
     }
 
     private fun initToolbarMenuClickListener() {
@@ -41,20 +50,6 @@ class MovieFragment : Fragment() {
             viewModel.setPhase(menu.itemId)
             true
         }
-    }
-
-    private fun initMoviesCollect() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.movies.collect { list ->
-                    (binding.rwMovie.adapter as MovieAdapter).submitList(list)
-                }
-            }
-        }
-    }
-
-    private fun initRecyclerView() {
-        binding.rwMovie.also { it.setHasFixedSize(true) }.adapter = MovieAdapter()
     }
 
     override fun onDestroyView() {
