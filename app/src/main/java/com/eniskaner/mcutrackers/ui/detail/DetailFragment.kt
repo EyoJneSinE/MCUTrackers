@@ -29,6 +29,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         super.onViewCreated(view, savedInstanceState)
         initBindingVariables()
         initToolbarNavigationClickListener()
+        initRatingBarChangeListener()
         initFragmentResultListener()
     }
 
@@ -46,6 +47,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         title?.let {
             val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
             view.findNavController().navigate(action)
+        }
+    }
+
+    private fun initRatingBarChangeListener() {
+        binding.ratingDetail.setOnRatingBarChangeListener { _, value, _ ->
+            viewModel.changeRating(value)
         }
     }
 
