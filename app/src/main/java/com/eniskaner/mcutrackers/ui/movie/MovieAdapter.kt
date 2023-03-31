@@ -5,22 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.eniskaner.mcutrackers.base.BaseDiffUtilItemCallBack
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.databinding.ItemMovieBinding
 import com.eniskaner.mcutrackers.util.MarvelViewHolder
 
 class MovieAdapter : ListAdapter<MovieBasicInfo, MarvelViewHolder<MovieBasicInfo>>(
-    object : DiffUtil.ItemCallback<MovieBasicInfo>() {
+    BaseDiffUtilItemCallBack(
+        areItemsSame = {oldItem, newItem -> oldItem.id == newItem.id },
 
-        @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: MovieBasicInfo, newItem: MovieBasicInfo): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areItemsTheSame(oldItem: MovieBasicInfo, newItem: MovieBasicInfo): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
+        areContentsSame = {oldItem, newItem -> oldItem == newItem }
+    )
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelViewHolder<MovieBasicInfo> {
         val inflater = LayoutInflater.from(parent.context)
