@@ -17,7 +17,7 @@ class MarvelViewHolder<T>(
         }
     }
     companion object {
-        val callback = NavigateCallBack { view, title ->
+        private val callback = NavigateCallBack { view, title ->
             title?.let {
                 val action = NavGraphDirections.actionGlobalDetailFragment(title)
                 view.findNavController().navigate(action)
