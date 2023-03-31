@@ -1,15 +1,14 @@
 package com.eniskaner.mcutrackers.ui.detail
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.eniskaner.mcutrackers.R
+import com.eniskaner.mcutrackers.base.BaseFragment
 import com.eniskaner.mcutrackers.databinding.FragmentDetailBinding
 import com.eniskaner.mcutrackers.util.NavigateCallBack
 import com.google.android.material.snackbar.Snackbar
@@ -17,9 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
-    private var _binding: FragmentDetailBinding? = null
-    private val binding get() = requireNotNull(_binding)
+class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
     private val args by navArgs<DetailFragmentArgs>()
 
     @Inject
@@ -28,17 +25,6 @@ class DetailFragment : Fragment() {
     private val viewModel by viewModels<DetailViewModel> {
         DetailViewModel.provideDetailAssistedFactory(viewModelAssistedFactory, args.title)
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentDetailBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = viewLifecycleOwner
-        }
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBindingVariables()
@@ -50,12 +36,16 @@ class DetailFragment : Fragment() {
         with(binding) {
             vm = this@DetailFragment.viewModel
             callback = NavigateCallBack { view, title ->
-                title?.let {
-                    val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
-                    view.findNavController().navigate(action)
-                }
+                navigateRatingDialog(view, title)
             }
             executePendingBindings()
+        }
+    }
+
+    private fun navigateRatingDialog(view: View, title: String?) {
+        title?.let {
+            val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
+            view.findNavController().navigate(action)
         }
     }
 
@@ -71,11 +61,5 @@ class DetailFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 
 }
