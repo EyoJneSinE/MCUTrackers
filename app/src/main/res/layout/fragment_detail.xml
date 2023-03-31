@@ -118,7 +118,7 @@
 
             android:contentDescription="@string/floating_action_button_content_description"
             android:onClick="@{(view) -> callback.navigate(view, vm.movie.title)}"
-            android:visibility="@{vm.isFavourite ? View.GONE : View.VISIBLE, default = gone}"
+            android:visibility="@{vm.exitRating ? View.GONE : View.VISIBLE, default = gone}"
             app:backgroundTint="@android:color/holo_red_dark"
             app:layout_anchor="@id/app_bar_detail"
             app:layout_anchorGravity="bottom|end"
