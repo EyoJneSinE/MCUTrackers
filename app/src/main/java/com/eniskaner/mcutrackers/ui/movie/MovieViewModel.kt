@@ -1,6 +1,7 @@
 package com.eniskaner.mcutrackers.ui.movie
 
 import androidx.annotation.MenuRes
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eniskaner.mcutrackers.data.repository.MovieRepository
@@ -13,9 +14,11 @@ import javax.inject.Inject
 @HiltViewModel
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieViewModel @Inject constructor(
-    private val repository: MovieRepository
+    private val repository: MovieRepository,
+    private val savedStateHandle: SavedStateHandle
 ): ViewModel() {
-    private val _phase = MutableStateFlow(Phase.ALL)
+    private val key = "Phase"
+    private val _phase = MutableStateFlow(savedStateHandle[key] ?: Phase.ALL)
         val phase = _phase.asStateFlow()
 
     val movies = _phase.flatMapLatest { phase ->
@@ -25,6 +28,9 @@ class MovieViewModel @Inject constructor(
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
     fun setPhase(@MenuRes menuId: Int) {
-        Phase.map[menuId]?.let { _phase.value = it }
+        Phase.map[menuId]?.let {
+            _phase.value = it
+            savedStateHandle[key] = it
+        }
     }
 }
