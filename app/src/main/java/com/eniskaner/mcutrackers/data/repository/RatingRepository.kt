@@ -3,9 +3,7 @@ package com.eniskaner.mcutrackers.data.repository
 import kotlinx.coroutines.flow.Flow
 
 interface RatingRepository {
-    fun getRating(title: String): Flow<Float>
+    fun getExistsRating(title: String): Flow<Boolean>
 
     suspend fun insertRating(title: String, rating: Float)
-
-    suspend fun changeRating(title: String, rating: Float)
 }
