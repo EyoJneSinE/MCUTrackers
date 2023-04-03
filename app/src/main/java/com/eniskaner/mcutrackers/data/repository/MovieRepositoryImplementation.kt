@@ -1,8 +1,12 @@
 package com.eniskaner.mcutrackers.data.repository
 
+import android.support.annotation.MenuRes
+import androidx.datastore.dataStore
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.database.MarvelDao
 import com.eniskaner.mcutrackers.database.model.Movie
+import com.eniskaner.mcutrackers.database.model.Phase
+import com.eniskaner.mcutrackers.datastore.MarvelDatastore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -10,6 +14,7 @@ import javax.inject.Inject
 
 class MovieRepositoryImplementation @Inject constructor(
     private val dao: MarvelDao,
+    private val dataStore: MarvelDatastore,
     private val ioDispatcher: CoroutineDispatcher
 ): MovieRepository {
     override fun getMovies(): Flow<List<MovieBasicInfo>> {
@@ -19,4 +24,14 @@ class MovieRepositoryImplementation @Inject constructor(
     override fun getMoviesByPhase(phase: Int): Flow<List<MovieBasicInfo>> {
         return dao.getMoviesByPhase(phase).flowOn(ioDispatcher)
     }
+
+    override fun getPhase(): Flow<Phase> {
+        return dataStore.getPhase()
+    }
+
+    override suspend fun setPhase(@MenuRes menuId: Int) {
+        return dataStore.setPhase(menuId)
+    }
+
+
 }
