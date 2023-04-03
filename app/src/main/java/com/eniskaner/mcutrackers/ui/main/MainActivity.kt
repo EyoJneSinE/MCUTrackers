@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.metrics.performance.JankStats
-import androidx.metrics.performance.PerformanceMetricsState
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.eniskaner.mcutrackers.R
 import com.eniskaner.mcutrackers.databinding.ActivityMainBinding
+import com.eniskaner.mcutrackers.util.getMetricsStateHolder
+import com.eniskaner.mcutrackers.util.putState
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     private val holder by lazy {
-        PerformanceMetricsState.getHolderForHierarchy(binding.root)
+        binding.getMetricsStateHolder()
     }
     private lateinit var jankStats: JankStats
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
     private fun putStateInMetricsStateHolder(destination: NavDestination) {
-        holder.state?.putState("CurrentDestination", "${destination.label}")
+        holder.putState("CurrentDestination", "${destination.label}")
     }
     private fun setBottomNavigationShowAnimation() {
         binding.bottomNavigation.takeIf { it.visibility == View.GONE }?.let {
