@@ -5,6 +5,7 @@
     <!-- fragment_favourite -->
     <string name="favourites_empty">Favourites are empty.</string>
     <!-- fragment_detail -->
+    <string name="navigation_icon_content_description">Icon Pop Back Stack</string>
     <string name="detail_release_and_running_time">%1$s / %2$d min</string>
     <!-- dialog_rating -->
     <string name="rating_title">Please enter your star rating for</string>
