@@ -16,23 +16,6 @@
         android:label="FavoriteFragment"
         tools:layout="@layout/fragment_favourite" >
     </fragment>
-
-
-
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.eniskaner.mcutrackers.ui.detail.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail">
-
-        <argument
-            android:name="title"
-            app:argType="string"/>
-        <action
-            android:id="@+id/action_detailFragment_to_ratingDialog"
-            app:destination="@id/ratingDialog" />
-
-    </fragment>
     <action
         android:id="@+id/action_global_detailFragment"
         app:destination="@id/detailFragment"
@@ -40,6 +23,23 @@
         app:exitAnim="@anim/exit_to_left"
         app:popEnterAnim="@anim/enter_from_left"
         app:popExitAnim="@anim/exit_to_right" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.eniskaner.mcutrackers.ui.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_detailFragment_to_ratingDialog"
+            app:destination="@id/ratingDialog" />
+
+        <argument
+            android:name="title"
+            app:argType="string"/>
+
+
+    </fragment>
+
     <dialog
         android:id="@+id/ratingDialog"
         android:name="com.eniskaner.mcutrackers.ui.rating.RatingDialog"

@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieViewModel @Inject constructor(
-    repository: MovieRepository
+    private val repository: MovieRepository
 ): ViewModel() {
     private val _phase = MutableStateFlow(Phase.ALL)
         val phase = _phase.asStateFlow()
