@@ -15,7 +15,6 @@ class RatingRepositoryImplementation @Inject constructor(
         return dao.getRating(title).flowOn(ioDispatcher)
     }
 
-
     override suspend fun insertRating(title: String, rating: Float) {
         dao.insertRating(Rating(title = title, rating = rating))
     }

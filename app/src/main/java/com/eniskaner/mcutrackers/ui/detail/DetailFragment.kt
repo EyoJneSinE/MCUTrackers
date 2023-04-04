@@ -18,10 +18,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
     private val args by navArgs<DetailFragmentArgs>()
-
     @Inject
     lateinit var viewModelAssistedFactory: DetailViewModel.DetailAssistedFactory
-
     private val viewModel by viewModels<DetailViewModel> {
         DetailViewModel.provideDetailAssistedFactory(viewModelAssistedFactory, args.title)
     }
@@ -35,18 +33,20 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun initBindingVariables() {
         with(binding) {
-            vm = this@DetailFragment.viewModel
-            callback = NavigateCallBack { view, title ->
-                navigateRatingDialog(view, title)
-            }
+            vm = viewModel
+            callback = NavigateCallBack { view, title ->  navigateRatingDialog(view, title) }
             executePendingBindings()
         }
     }
-
     private fun navigateRatingDialog(view: View, title: String?) {
         title?.let {
             val action = DetailFragmentDirections.actionDetailFragmentToRatingDialog(title)
             view.findNavController().navigate(action)
+        }
+    }
+    private fun initToolbarNavigationClickListener() {
+        binding.toolbarDetail.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -57,16 +57,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     }
 
     private fun initFragmentResultListener() {
-        setFragmentResultListener("rating") { _ , bundle ->
+        setFragmentResultListener("rating") { _, bundle ->
             viewModel.insertRating(bundle.getFloat("rating"))
-            Snackbar.make(binding.root, "Star ratings saved.", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Star ratings are saved.", Snackbar.LENGTH_SHORT).show()
         }
     }
-
-    private fun initToolbarNavigationClickListener() {
-        binding.toolbarDetail.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
-
 }

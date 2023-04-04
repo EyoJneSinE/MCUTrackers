@@ -7,7 +7,7 @@ import com.eniskaner.mcutrackers.BR
 import com.eniskaner.mcutrackers.NavGraphDirections
 
 class MarvelViewHolder<T>(
-    private val binding: ViewDataBinding,
+    private val binding: ViewDataBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(model: T) {
         with(binding) {

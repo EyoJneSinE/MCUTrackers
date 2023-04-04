@@ -1,11 +1,10 @@
 package com.eniskaner.mcutrackers.ui.movie
 
 import androidx.annotation.MenuRes
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eniskaner.mcutrackers.data.repository.MovieRepository
-import com.eniskaner.mcutrackers.database.model.Phase
+import com.eniskaner.mcutrackers.data.model.Phase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*

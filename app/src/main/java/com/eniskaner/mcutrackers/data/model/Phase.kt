@@ -1,4 +1,4 @@
-package com.eniskaner.mcutrackers.database.model
+package com.eniskaner.mcutrackers.data.model
 
 import com.eniskaner.mcutrackers.R
 

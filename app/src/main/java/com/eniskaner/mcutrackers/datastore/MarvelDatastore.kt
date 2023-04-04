@@ -1,12 +1,12 @@
 package com.eniskaner.mcutrackers.datastore
 
 import android.content.Context
-import android.support.annotation.MenuRes
+import androidx.annotation.MenuRes
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.eniskaner.mcutrackers.R
-import com.eniskaner.mcutrackers.database.model.Phase
+import com.eniskaner.mcutrackers.data.model.Phase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -21,7 +21,7 @@ class MarvelDatastore @Inject constructor(
         return context.datastore.data.map { preferences ->
             preferences[phaseKey] ?: R.id.filter_phase_all
         }.map { menuId ->
-            mapMenuIdtoPhase(menuId) ?: Phase.ALL
+            mapMenuIdToPhase(menuId) ?: Phase.ALL
         }
     }
 
@@ -31,7 +31,7 @@ class MarvelDatastore @Inject constructor(
         }
     }
 
-    private fun mapMenuIdtoPhase(@MenuRes menuId: Int): Phase? {
+    private fun mapMenuIdToPhase(@MenuRes menuId: Int): Phase? {
         return when (menuId) {
             R.id.filter_phase_all -> Phase.ALL
             R.id.filter_phase_1 -> Phase.ONE

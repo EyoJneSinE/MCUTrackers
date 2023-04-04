@@ -1,9 +1,8 @@
 package com.eniskaner.mcutrackers.data.repository
 
-import android.support.annotation.MenuRes
+import androidx.annotation.MenuRes
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
-import com.eniskaner.mcutrackers.database.model.Movie
-import com.eniskaner.mcutrackers.database.model.Phase
+import com.eniskaner.mcutrackers.data.model.Phase
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getNavController(): NavController {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        return navHostFragment.navController
+        return addOnDestinationChangedListener(navHostFragment.navController)
     }
 
     private fun addOnDestinationChangedListener(navController: NavController): NavController {

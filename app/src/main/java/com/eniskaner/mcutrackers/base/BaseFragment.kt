@@ -1,7 +1,7 @@
 package com.eniskaner.mcutrackers.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<V : ViewDataBinding>(
-    @LayoutRes private val layoutId: Int,
+    @LayoutRes private val layoutId: Int
 ) : Fragment() {
     private var _binding: V? = null
     protected val binding get() = requireNotNull(_binding)

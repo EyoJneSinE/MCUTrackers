@@ -1,11 +1,9 @@
 package com.eniskaner.mcutrackers.data.repository
 
-import android.support.annotation.MenuRes
-import androidx.datastore.dataStore
+import androidx.annotation.MenuRes
 import com.eniskaner.mcutrackers.data.model.MovieBasicInfo
 import com.eniskaner.mcutrackers.database.MarvelDao
-import com.eniskaner.mcutrackers.database.model.Movie
-import com.eniskaner.mcutrackers.database.model.Phase
+import com.eniskaner.mcutrackers.data.model.Phase
 import com.eniskaner.mcutrackers.datastore.MarvelDatastore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

@@ -12,7 +12,7 @@ class FavouriteRepositoryImplementation @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ): FavouriteRepository {
     override fun getFavourites(): Flow<List<MovieAndRating>> {
-        return dao.getFavourites().flowOn(ioDispatcher)
+        return dao.getFavorites().flowOn(ioDispatcher)
     }
 
 }
