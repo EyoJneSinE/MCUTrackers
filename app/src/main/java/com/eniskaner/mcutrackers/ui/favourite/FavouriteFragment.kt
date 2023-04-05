@@ -30,6 +30,6 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(R.layout.fragme
 
     private fun initScrollListenerForJankStats() {
         val holder = binding.getMetricsStateHolder()
-        binding.rwFavourite.addOnScrollListenerForJankStats(holder)
+        binding.rwFavourites.addOnScrollListenerForJankStats(holder)
     }
 }

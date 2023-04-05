@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/movieFragment">
+
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.eniskaner.mcutrackers.ui.movie.MovieFragment"
         android:label="MovieFragment"
-        tools:layout="@layout/fragment_movie" >
-    </fragment>
+        tools:layout="@layout/fragment_movie" />
+
     <fragment
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/favouriteFragment"
         android:name="com.eniskaner.mcutrackers.ui.favourite.FavouriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favourite" >
-    </fragment>
+        tools:layout="@layout/fragment_favourite" />
+
     <action
         android:id="@+id/action_global_detailFragment"
         app:destination="@id/detailFragment"
@@ -29,14 +30,14 @@
         android:name="com.eniskaner.mcutrackers.ui.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
+
         <action
             android:id="@+id/action_detailFragment_to_ratingDialog"
             app:destination="@id/ratingDialog" />
 
         <argument
             android:name="title"
-            app:argType="string"/>
-
+            app:argType="string" />
 
     </fragment>
 
@@ -45,9 +46,11 @@
         android:name="com.eniskaner.mcutrackers.ui.rating.RatingDialog"
         android:label="RatingDialog"
         tools:layout="@layout/dialog_rating">
+
         <argument
             android:name="title"
             app:argType="string" />
+
     </dialog>
 
 </navigation>

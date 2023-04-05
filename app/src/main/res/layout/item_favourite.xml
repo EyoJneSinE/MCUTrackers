@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="model"
             type="com.eniskaner.mcutrackers.data.model.MovieAndRating" />
+
         <variable
             name="callback"
             type="com.eniskaner.mcutrackers.util.NavigateCallBack" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -25,7 +28,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <ImageView
                 android:id="@+id/img_favourite"
                 android:layout_width="0dp"
@@ -36,7 +39,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setImageWithUrl="@{model.image}"/>
+                app:setImageWithUrl="@{model.image}" />
+
             <TextView
                 android:id="@+id/tv_favourite_title"
                 android:layout_width="0dp"
@@ -49,6 +53,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_favourite"
                 tools:text="IronMan" />
+
             <RatingBar
                 android:id="@+id/rating_favourite"
                 style="@style/Widget.AppCompat.RatingBar.Small"
@@ -65,6 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_favourite_title"
                 tools:rating="3" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
